@@ -64,6 +64,11 @@ export const getCourseById = async (req, res) => {
       include: {
         students: true,
         createdBy: true,
+        lectures: {
+          include: {
+            attachments: true,
+          },
+        },
       },
     });
     if (!course) {
