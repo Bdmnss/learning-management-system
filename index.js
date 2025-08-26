@@ -1,4 +1,5 @@
 import express from "express";
+import setupSwagger from "./swagger/swagger.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import courseRoutes from "./routes/courseRoutes.js";
@@ -10,6 +11,7 @@ import fileRoutes from "./routes/fileRoutes.js";
 
 const app = express();
 app.use(express.json());
+setupSwagger(app);
 
 app.use("/uploads", express.static("uploads"));
 
