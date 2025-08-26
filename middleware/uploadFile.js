@@ -56,3 +56,28 @@ export const uploadLectureFiles = multer({
   { name: "video", maxCount: 1 },
   { name: "attachment", maxCount: 10 },
 ]);
+
+export const uploadAssignmentFile = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    const assignmentTypes = [
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ];
+
+    if (assignmentTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(
+        new Error(
+          `Invalid file type: ${file.mimetype} for field: ${file.fieldname}`
+        ),
+        false
+      );
+    }
+  },
+  limits: {
+    fileSize: 100 * 1024 * 1024, // 100 MB
+  },
+}).single("assignment");
