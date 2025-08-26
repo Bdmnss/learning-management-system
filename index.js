@@ -5,6 +5,8 @@ import courseRoutes from "./routes/courseRoutes.js";
 import lectureRoutes from "./routes/lectureRoutes.js";
 import assignmentRoutes from "./routes/assignmentRoutes.js";
 import submissionRoutes from "./routes/submissionRoutes.js";
+import gradeRoutes from "./routes/gradeRoutes.js";
+import fileRoutes from "./routes/fileRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -17,6 +19,8 @@ app.use("/api/courses", courseRoutes);
 app.use("/api/courses", lectureRoutes);
 app.use("/api/courses", assignmentRoutes);
 app.use("/api/assignments", submissionRoutes);
+app.use("/api/submissions", gradeRoutes);
+app.use("/api/files", fileRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello, learning management system!");
